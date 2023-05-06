@@ -1,0 +1,49 @@
+projectId: app-oFZ5bWfBLcf8Yuo97PohrYx
+appName: backupmanagement
+description: Sample application
+imageURL: http://image.com/image
+version: 1.0.0
+hostName: example.test
+clusterURL: https://kubernetes.default.svc
+clusterIPs:
+- 192.168.59.103
+monitoring: true
+microservices:
+  backupService:
+    serviceName: backupservice
+    avgReplicas: 2
+    minReplicas: 1
+    maxReplicas: 3
+    maxCPU: 200m
+    maxMemory: 700Mi
+    dockerImage: danympradana/go-kubernetes
+    containerPort: 8080
+    envs:
+      go_kubernetes_db_driver:
+        name: go_kubernetes_db_driver
+        value: mysql
+      go_kubernetes_db_host:
+        name: go_kubernetes_db_host
+        value: mysql-service.default.svc.cluster.local
+      go_kubernetes_db_name:
+        name: go_kubernetes_db_name
+        value: go_kubernetes
+      go_kubernetes_db_password:
+        name: go_kubernetes_db_password
+        value: passw0rd
+      go_kubernetes_db_port:
+        name: go_kubernetes_db_port
+        value: "3306"
+      go_kubernetes_db_user:
+        name: go_kubernetes_db_user
+        value: root
+    serviceEvaluation:
+      kubeConfigType:
+      - statefulSetBased
+evaluationResult:
+  language: Go
+  database: MySQL
+  hasKubernetesService: true
+  hasKubernetesDeployment: true
+  microservices:
+  - backupService

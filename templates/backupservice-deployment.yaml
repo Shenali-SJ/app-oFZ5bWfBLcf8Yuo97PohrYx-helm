@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: '{{.Values.microservices.backupService.serviceName}}'
+  labels:
+    app: '{{.Values.microservices.backupService.serviceName}}'
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: '{{.Values.microservices.backupService.serviceName}}'
+  template:
+    metadata:
+      labels:
+        app: '{{.Values.microservices.backupService.serviceName}}'
+    spec:
+      containers:
+      - name: '{{.Values.microservices.backupService.serviceName}}'
+        image: '{{.Values.microservices.backupService.dockerImage}}'
+        ports:
+        - containerPort: 8080
+        env:
+        - name: '{{.Values.microservices.backupService.envs.go_kubernetes_db_password.name}}'
+          valueFrom:
+            configMapKeyRef:
+              name: '{{.Values.microservices.backupService.serviceName}}'
+              key: '{{.Values.microservices.backupService.envs.go_kubernetes_db_password.name}}'
+        - name: '{{.Values.microservices.backupService.envs.go_kubernetes_db_driver.name}}'
+          valueFrom:
+            configMapKeyRef:
+              name: '{{.Values.microservices.backupService.serviceName}}'
+              key: '{{.Values.microservices.backupService.envs.go_kubernetes_db_driver.name}}'
+        - name: '{{.Values.microservices.backupService.envs.go_kubernetes_db_host.name}}'
+          valueFrom:
+            configMapKeyRef:
+              name: '{{.Values.microservices.backupService.serviceName}}'
+              key: '{{.Values.microservices.backupService.envs.go_kubernetes_db_host.name}}'
+        - name: '{{.Values.microservices.backupService.envs.go_kubernetes_db_port.name}}'
+          valueFrom:
+            configMapKeyRef:
+              name: '{{.Values.microservices.backupService.serviceName}}'
+              key: '{{.Values.microservices.backupService.envs.go_kubernetes_db_port.name}}'
+        - name: '{{.Values.microservices.backupService.envs.go_kubernetes_db_name.name}}'
+          valueFrom:
+            configMapKeyRef:
+              name: '{{.Values.microservices.backupService.serviceName}}'
+              key: '{{.Values.microservices.backupService.envs.go_kubernetes_db_name.name}}'
+        - name: '{{.Values.microservices.backupService.envs.go_kubernetes_db_user.name}}'
+          valueFrom:
+            configMapKeyRef:
+              name: '{{.Values.microservices.backupService.serviceName}}'
+              key: '{{.Values.microservices.backupService.envs.go_kubernetes_db_user.name}}'
+        resources:
+          requests:
+            cpu: 100m
+            memory: 500Mi
+          limits:
+            cpu: '{{.Values.microservices.backupService.maxCPU}}'
+            memory: '{{.Values.microservices.backupService.maxMemory}}'

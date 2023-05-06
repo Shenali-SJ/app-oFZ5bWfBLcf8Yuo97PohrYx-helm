@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: '{{.Values.microservices.backupService.serviceName}}'
+data:
+  go_kubernetes_db_driver: mysql
+  go_kubernetes_db_host: mysql-service.default.svc.cluster.local
+  go_kubernetes_db_name: go_kubernetes
+  go_kubernetes_db_password: passw0rd
+  go_kubernetes_db_port: "3306"
+  go_kubernetes_db_user: root

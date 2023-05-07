@@ -1,5 +1,5 @@
-projectId: app-BoKpGiTPF9kLvCajuReyAT
-appName: onlineboutique
+projectId: app-cTTY2tRPnQLEeqecLNEhwW
+appName: petclinic
 description: Sample application
 imageURL: http://image.com/image
 version: 1.0.0
@@ -7,39 +7,18 @@ hostName: example.test
 clusterURL: https://kubernetes.default.svc
 clusterIPs:
 - 192.168.59.103
+monitoring: true
 microservices:
-  adservice:
-    serviceName: adservice
-  cartservice:
-    serviceName: cartservice
+  petclinicService:
+    serviceName: petclinicservice
+  service:
+    serviceName: service
     serviceEvaluation:
       kubeConfigType:
       - statefulSetBased
-  checkoutservice:
-    serviceName: checkoutservice
-  currencyservice:
-    serviceName: currencyservice
-  emailservice:
-    serviceName: emailservice
-  paymentservice:
-    serviceName: paymentservice
-  productcatalogservice:
-    serviceName: productcatalogservice
-  recommendationservice:
-    serviceName: recommendationservice
-  shippingservice:
-    serviceName: shippingservice
 evaluationResult:
   language: Java
-  hasKubernetesService: true
-  hasKubernetesDeployment: true
+  database: MySQL
   microservices:
-  - adservice
-  - cartservice
-  - checkoutservice
-  - currencyservice
-  - emailservice
-  - paymentservice
-  - productcatalogservice
-  - recommendationservice
-  - shippingservice
+  - petclinicService
+  - service

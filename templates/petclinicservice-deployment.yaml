@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: '{{.Values.microservices.petclinicService.serviceName}}'
+  labels:
+    app: '{{.Values.microservices.petclinicService.serviceName}}'
+spec:
+  replicas: 0
+  selector:
+    matchLabels:
+      app: '{{.Values.microservices.petclinicService.serviceName}}'
+  template:
+    metadata:
+      labels:
+        app: '{{.Values.microservices.petclinicService.serviceName}}'
+    spec:
+      containers:
+      - name: '{{.Values.microservices.petclinicService.serviceName}}'
+        image: '{{.Values.microservices.petclinicService.dockerImage}}'
+        ports:
+        - containerPort: 0
+        env: []
+        resources:
+          requests:
+            cpu: 100m
+            memory: 500Mi
+          limits:
+            cpu: '{{.Values.microservices.petclinicService.maxCPU}}'
+            memory: '{{.Values.microservices.petclinicService.maxMemory}}'

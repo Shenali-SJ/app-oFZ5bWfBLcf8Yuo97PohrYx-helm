@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: '{{.Values.appName}}'
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+spec:
+  rules:
+  - host: '{{.Values.hostName}}'
+    http:
+      paths:
+      - path: /{{.Values.microservices.service.serviceName}}(/|$)(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: '{{.Values.microservices.service.serviceName}}'
+            port:
+              name: http
+      - path: /{{.Values.microservices.petclinicService.serviceName}}(/|$)(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: '{{.Values.microservices.petclinicService.serviceName}}'
+            port:
+              name: http

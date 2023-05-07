@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: '{{.Values.microservices.currencyservice.serviceName}}'
+  labels:
+    app: '{{.Values.microservices.currencyservice.serviceName}}'
+spec:
+  replicas: 0
+  selector:
+    matchLabels:
+      app: '{{.Values.microservices.currencyservice.serviceName}}'
+  template:
+    metadata:
+      labels:
+        app: '{{.Values.microservices.currencyservice.serviceName}}'
+    spec:
+      containers:
+      - name: '{{.Values.microservices.currencyservice.serviceName}}'
+        image: '{{.Values.microservices.currencyservice.dockerImage}}'
+        ports:
+        - containerPort: 0
+        env: []
+        resources:
+          requests:
+            cpu: 100m
+            memory: 500Mi
+          limits:
+            cpu: '{{.Values.microservices.currencyservice.maxCPU}}'
+            memory: '{{.Values.microservices.currencyservice.maxMemory}}'

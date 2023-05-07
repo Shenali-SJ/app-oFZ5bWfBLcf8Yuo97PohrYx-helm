@@ -1,0 +1,74 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: '{{.Values.appName}}'
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+spec:
+  rules:
+  - host: '{{.Values.hostName}}'
+    http:
+      paths:
+      - path: /{{.Values.microservices.cartservice.serviceName}}(/|$)(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: '{{.Values.microservices.cartservice.serviceName}}'
+            port:
+              name: http
+      - path: /{{.Values.microservices.checkoutservice.serviceName}}(/|$)(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: '{{.Values.microservices.checkoutservice.serviceName}}'
+            port:
+              name: http
+      - path: /{{.Values.microservices.recommendationservice.serviceName}}(/|$)(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: '{{.Values.microservices.recommendationservice.serviceName}}'
+            port:
+              name: http
+      - path: /{{.Values.microservices.adservice.serviceName}}(/|$)(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: '{{.Values.microservices.adservice.serviceName}}'
+            port:
+              name: http
+      - path: /{{.Values.microservices.emailservice.serviceName}}(/|$)(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: '{{.Values.microservices.emailservice.serviceName}}'
+            port:
+              name: http
+      - path: /{{.Values.microservices.paymentservice.serviceName}}(/|$)(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: '{{.Values.microservices.paymentservice.serviceName}}'
+            port:
+              name: http
+      - path: /{{.Values.microservices.productcatalogservice.serviceName}}(/|$)(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: '{{.Values.microservices.productcatalogservice.serviceName}}'
+            port:
+              name: http
+      - path: /{{.Values.microservices.shippingservice.serviceName}}(/|$)(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: '{{.Values.microservices.shippingservice.serviceName}}'
+            port:
+              name: http
+      - path: /{{.Values.microservices.currencyservice.serviceName}}(/|$)(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: '{{.Values.microservices.currencyservice.serviceName}}'
+            port:
+              name: http

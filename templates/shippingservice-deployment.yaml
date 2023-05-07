@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: '{{.Values.microservices.shippingservice.serviceName}}'
+  labels:
+    app: '{{.Values.microservices.shippingservice.serviceName}}'
+spec:
+  replicas: 0
+  selector:
+    matchLabels:
+      app: '{{.Values.microservices.shippingservice.serviceName}}'
+  template:
+    metadata:
+      labels:
+        app: '{{.Values.microservices.shippingservice.serviceName}}'
+    spec:
+      containers:
+      - name: '{{.Values.microservices.shippingservice.serviceName}}'
+        image: '{{.Values.microservices.shippingservice.dockerImage}}'
+        ports:
+        - containerPort: 0
+        env: []
+        resources:
+          requests:
+            cpu: 100m
+            memory: 500Mi
+          limits:
+            cpu: '{{.Values.microservices.shippingservice.maxCPU}}'
+            memory: '{{.Values.microservices.shippingservice.maxMemory}}'

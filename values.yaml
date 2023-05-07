@@ -1,5 +1,5 @@
-projectId: app-cTTY2tRPnQLEeqecLNEhwW
-appName: petclinic
+projectId: app-dPRVshYfTfk97LvVfa2e35
+appName: cineroam
 description: Sample application
 imageURL: http://image.com/image
 version: 1.0.0
@@ -9,16 +9,19 @@ clusterIPs:
 - 192.168.59.103
 monitoring: true
 microservices:
-  petclinicService:
-    serviceName: petclinicservice
-  service:
-    serviceName: service
+  movie-microservice:
+    serviceName: moviemicroservice
+  recommendation-microservice:
+    serviceName: recommendationmicroservice
+  user-microservice:
+    serviceName: usermicroservice
     serviceEvaluation:
       kubeConfigType:
       - statefulSetBased
 evaluationResult:
-  language: Java
-  database: MySQL
+  language: Go
+  database: Mongo
   microservices:
-  - petclinicService
-  - service
+  - movie-microservice
+  - recommendation-microservice
+  - user-microservice

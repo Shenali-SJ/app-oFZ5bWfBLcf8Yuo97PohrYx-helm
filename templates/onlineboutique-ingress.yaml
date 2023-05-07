@@ -9,32 +9,18 @@ spec:
   - host: '{{.Values.hostName}}'
     http:
       paths:
-      - path: /{{.Values.microservices.cartservice.serviceName}}(/|$)(.*)
+      - path: /{{.Values.microservices.productcatalogservice.serviceName}}(/|$)(.*)
         pathType: Prefix
         backend:
           service:
-            name: '{{.Values.microservices.cartservice.serviceName}}'
+            name: '{{.Values.microservices.productcatalogservice.serviceName}}'
             port:
               name: http
-      - path: /{{.Values.microservices.checkoutservice.serviceName}}(/|$)(.*)
+      - path: /{{.Values.microservices.currencyservice.serviceName}}(/|$)(.*)
         pathType: Prefix
         backend:
           service:
-            name: '{{.Values.microservices.checkoutservice.serviceName}}'
-            port:
-              name: http
-      - path: /{{.Values.microservices.recommendationservice.serviceName}}(/|$)(.*)
-        pathType: Prefix
-        backend:
-          service:
-            name: '{{.Values.microservices.recommendationservice.serviceName}}'
-            port:
-              name: http
-      - path: /{{.Values.microservices.adservice.serviceName}}(/|$)(.*)
-        pathType: Prefix
-        backend:
-          service:
-            name: '{{.Values.microservices.adservice.serviceName}}'
+            name: '{{.Values.microservices.currencyservice.serviceName}}'
             port:
               name: http
       - path: /{{.Values.microservices.emailservice.serviceName}}(/|$)(.*)
@@ -51,11 +37,11 @@ spec:
             name: '{{.Values.microservices.paymentservice.serviceName}}'
             port:
               name: http
-      - path: /{{.Values.microservices.productcatalogservice.serviceName}}(/|$)(.*)
+      - path: /{{.Values.microservices.recommendationservice.serviceName}}(/|$)(.*)
         pathType: Prefix
         backend:
           service:
-            name: '{{.Values.microservices.productcatalogservice.serviceName}}'
+            name: '{{.Values.microservices.recommendationservice.serviceName}}'
             port:
               name: http
       - path: /{{.Values.microservices.shippingservice.serviceName}}(/|$)(.*)
@@ -65,10 +51,24 @@ spec:
             name: '{{.Values.microservices.shippingservice.serviceName}}'
             port:
               name: http
-      - path: /{{.Values.microservices.currencyservice.serviceName}}(/|$)(.*)
+      - path: /{{.Values.microservices.adservice.serviceName}}(/|$)(.*)
         pathType: Prefix
         backend:
           service:
-            name: '{{.Values.microservices.currencyservice.serviceName}}'
+            name: '{{.Values.microservices.adservice.serviceName}}'
+            port:
+              name: http
+      - path: /{{.Values.microservices.cartservice.serviceName}}(/|$)(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: '{{.Values.microservices.cartservice.serviceName}}'
+            port:
+              name: http
+      - path: /{{.Values.microservices.checkoutservice.serviceName}}(/|$)(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: '{{.Values.microservices.checkoutservice.serviceName}}'
             port:
               name: http
